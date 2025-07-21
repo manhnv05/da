@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.giamgia;
 
 import java.util.Date;
@@ -24,10 +20,12 @@ public class GiamGia {
     private Integer id;
     private String maGiamGia;
     private String tenGiamGia;
-    private float phanTramGiam;
-    private Integer giaTriToiThieu;
-    private Integer giaTriToiDa;
+    private Integer soLuong;               // Số lượng phiếu
+    private String loaiGiamGia;            // Loại giảm giá ("Phần trăm", "Tiền")
+    private Double giaTriGiam;             // Giá trị giảm (decimal)
     private Date ngayBatDau;
     private Date ngayKetThuc;
-    private Integer trangThai;
+    private Double giaTriToiThieu;
+    private Double giaTriToiDa;
+    private Integer trangThai;             // 1: Đang diễn ra, 0: Kết thúc, ...
 }

@@ -288,7 +288,7 @@ public void fillGiamGia(ArrayList<GiamGia> list) {
     modelGiamGia.addElement("Không giảm giá");
     if (list != null && !list.isEmpty()) {
         for (GiamGia gg : list) {
-            Float phanTram = gg.getPhanTramGiam();
+            Double phanTram = gg.getGiaTriGiam();
             Integer trangThai = gg.getTrangThai(); 
             if (phanTram != null && trangThai != null && trangThai == 1) {
                 modelGiamGia.addElement(phanTram + "%");
