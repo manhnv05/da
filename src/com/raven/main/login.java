@@ -6,9 +6,8 @@
 package com.raven.main;
 
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import model.nguoidung.NhanVien;
 import repo.nguoidung.NhanVienRepo;
 
 
@@ -24,27 +23,6 @@ private NhanVienRepo nhanVienRepo;
         txtpassword.setBackground(new java.awt.Color(0, 0, 0, 1));
           panelLogin.setBackground(new java.awt.Color(44, 62, 80));
         nhanVienRepo = new NhanVienRepo();
-       
-//        
-        btnLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-//                String username = txtusername.getText();
-//                String password = new String(txtpassword.getPassword());
-//                if (username.equals("admin") && password.equals("123")) {
-//
-//                    new Main().setVisible(true);
-//
-////                      loginButton.dispose();
-//                        dispose();
-//
-//                }
-
-            }
-
-        });
-//        btnLogin.setVisible(true);
     }
 //    
 //
@@ -257,16 +235,17 @@ private NhanVienRepo nhanVienRepo;
     }//GEN-LAST:event_formWindowOpened
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-         String username = txtusername.getText();
-        String password = String.valueOf(txtpassword.getPassword());
-        if(nhanVienRepo.login(username, password)){
-            JOptionPane.showMessageDialog(this, "dang nhap thanh cong");
-            this.dispose();
-            new Main().setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(this, "dang nhap that bai");
-        }
+        String username = txtusername.getText().trim();
+    String password = String.valueOf(txtpassword.getPassword());
+        NhanVien nv = nhanVienRepo.login(username, password);
+    if (nv != null) {
+        JOptionPane.showMessageDialog(this, "Đăng nhập thành công");
+        // Truyền NhanVien sang Main
+        new Main(nv).setVisible(true);
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "Đăng nhập thất bại");
+    }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
