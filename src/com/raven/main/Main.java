@@ -16,7 +16,7 @@ public class Main extends javax.swing.JFrame {
         System.out.println("Đăng nhập bởi nhân viên id: " + nhanVien.getId());
         lblUserName.setText(nhanVien.getTenNhanVien());
         lblChucVu.setText(nhanVien.getChucVu());
-
+        
     }
     private void init() {
     menu2.initMoving(this);

@@ -111,6 +111,7 @@ private void formatInputMoney(JTextField field) {
     public void fillGGTable(ArrayList<GiamGia> list) {
     dtmGG.setRowCount(0);
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    int stt = 1; // Biến đếm STT
     for (GiamGia giamGia : list) {
         String ngayBD = giamGia.getNgayBatDau() != null ? sdf.format(giamGia.getNgayBatDau()) : "";
         String ngayKT = giamGia.getNgayKetThuc() != null ? sdf.format(giamGia.getNgayKetThuc()) : "";
@@ -129,7 +130,7 @@ private void formatInputMoney(JTextField field) {
         }
 
         dtmGG.addRow(new Object[]{
-            giamGia.getId(),
+            stt++, // STT tăng dần
             giamGia.getMaGiamGia(),
             giamGia.getTenGiamGia(),
             giamGia.getLoaiGiamGia(),
@@ -297,10 +298,10 @@ private void formatInputMoney(JTextField field) {
 
     // Set loại giảm giá cho ComboBox hoặc RadioButton
     if ("Phần trăm".equalsIgnoreCase(gg.getLoaiGiamGia())) {
-        cbbLoaiGiam.setSelectedItem("Phần trăm");
+        //cbbLoaiGiam.setSelectedItem("Phần trăm");
         rboPhanTram.setSelected(true);
     } else if ("Giá Tiền".equalsIgnoreCase(gg.getLoaiGiamGia())) {
-        cbbLoaiGiam.setSelectedItem("Giá Tiền");
+        //cbbLoaiGiam.setSelectedItem("Giá Tiền");
         rboTien.setSelected(true);
     }
 
@@ -764,18 +765,27 @@ private void formatInputMoney(JTextField field) {
 
     private void tblGiamGiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGiamGiaMouseClicked
         // TODO add your handling code here:
-         showTable(tblGiamGia.getSelectedRow());
+         int selectedIndex = tblGiamGia.getSelectedRow();
+    if (selectedIndex == -1) {
+        JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng trong bảng!");
+        return;
+    }
+    showTable(selectedIndex);
     }//GEN-LAST:event_tblGiamGiaMouseClicked
 
     private void btnTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrangThaiActionPerformed
-        // TODO add your handling code here:
-        GiamGia gg = giamGiaRepo.getAll().get(tblGiamGia.getSelectedRow());
-        giamGiaRepo.delete(gg.getMaGiamGia());
-        fillGGTable(giamGiaRepo.getAll());
-        if (BanHangForm.instance !=null) {
-                   ArrayList<GiamGia> list = giamGiaRepo.getAll();
-                   BanHangForm.instance.fillGiamGia(list);
-               }
+        int selectedIndex = tblGiamGia.getSelectedRow();
+    if (selectedIndex == -1) {
+        JOptionPane.showMessageDialog(this, "Vui lòng chọn dòng để thay đổi trạng thái!");
+        return;
+    }
+    GiamGia gg = giamGiaRepo.getAll().get(selectedIndex);
+    giamGiaRepo.delete(gg.getMaGiamGia());
+    fillGGTable(giamGiaRepo.getAll());
+    if (BanHangForm.instance != null) {
+        ArrayList<GiamGia> list = giamGiaRepo.getAll();
+        BanHangForm.instance.fillGiamGia(list);
+    }
     }//GEN-LAST:event_btnTrangThaiActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
