@@ -6,6 +6,7 @@
 package com.raven.main;
 
 
+import com.raven.component.mail1;
 import javax.swing.JOptionPane;
 import model.nguoidung.NhanVien;
 import repo.nguoidung.NhanVienRepo;
@@ -170,6 +171,11 @@ private NhanVienRepo nhanVienRepo;
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Forget Password?");
         jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
         panelLogin.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(254, 261, 121, 27));
 
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -247,6 +253,12 @@ private NhanVienRepo nhanVienRepo;
         JOptionPane.showMessageDialog(this, "Đăng nhập thất bại");
     }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        mail1 mailForm = new mail1();
+    mailForm.setLocationRelativeTo(null); // Đặt ở giữa màn hình
+    mailForm.setVisible(true);
+    }//GEN-LAST:event_jLabel11MouseClicked
 
     /**
      * @param args the command line arguments

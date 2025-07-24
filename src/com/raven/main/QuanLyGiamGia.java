@@ -385,7 +385,6 @@ private void formatInputMoney(JTextField field) {
         btnThem = new javax.swing.JButton();
         btnTrangThai = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        btnExcel = new javax.swing.JButton();
         txtSoLuong = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -464,13 +463,6 @@ private void formatInputMoney(JTextField field) {
             }
         });
 
-        btnExcel.setText("Excel");
-        btnExcel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcelActionPerformed(evt);
-            }
-        });
-
         jLabel10.setText("Số Lượng");
 
         jLabel11.setText("Loại Giảm");
@@ -526,7 +518,6 @@ private void formatInputMoney(JTextField field) {
                         .addGap(19, 19, 19)))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnExcel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTrangThai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -552,8 +543,6 @@ private void formatInputMoney(JTextField field) {
                 .addComponent(btnTrangThai)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(btnExcel)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(84, 84, 84)
@@ -835,10 +824,6 @@ private void formatInputMoney(JTextField field) {
         }
     }//GEN-LAST:event_cbbLocActionPerformed
 
-    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcelActionPerformed
-
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         cbbLoc.setVisible(!cbbLoc.isVisible());
         lbltt.setVisible(!lbltt.isVisible());
@@ -869,7 +854,6 @@ private void formatInputMoney(JTextField field) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExcel;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;

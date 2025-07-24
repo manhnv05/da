@@ -314,4 +314,41 @@ public NhanVien login(String taiKhoan, String matKhau) {
         }
         return lists;
     }
+    
+    public boolean isEmailExists(String email) {
+        String sql = "SELECT COUNT(*) FROM nhan_vien WHERE email = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // 2. Đổi mật khẩu khi quên mật khẩu (tìm theo email, mã hóa bằng Argon2id)
+    public boolean updatePasswordByEmail(String email, String newPassword) {
+        int check = 0;
+        Argon2Function argon2 = Argon2Function.getInstance(
+            65536,         // memory (KB)
+            3,             // iterations
+            1,             // parallelism
+            32,            // hash length
+            Argon2.ID,     // type (enum)
+            Argon2Function.ARGON2_VERSION_13 // version (hoặc 0x13)
+        );
+        String hash = Password.hash(newPassword).with(argon2).getResult(); // lấy chuỗi hash
+        String sql = "UPDATE nhan_vien SET mat_khau = ? WHERE email = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, hash);
+            ps.setString(2, email);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
 }
